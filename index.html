@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Video Playlist</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background: #222;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5em;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      padding: 1rem;
+      gap: 1rem;
+    }
+
+    .playlist {
+      width: 300px;
+      max-height: 80vh;
+      overflow-y: auto;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .playlist h2 {
+      text-align: center;
+      margin: 0;
+      padding: 1rem;
+      background: #eee;
+      font-size: 1.2em;
+    }
+
+    .playlist ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .playlist li {
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .playlist li:hover {
+      background-color: #f0f0f0;
+    }
+
+    .playlist li.active {
+      background-color: #ddd;
+      font-weight: bold;
+    }
+
+    .video-container {
+      flex: 1;
+    }
+
+    iframe {
+      width: 100%;
+      height: 480px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .playlist {
+        width: 100%;
+        max-height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>Video Course Playlist</header>
+
+<div class="container">
+  <div class="playlist">
+    <h2>Playlist</h2>
+    <ul id="videoList">
+      <!-- Playlist items will be injected here -->
+    </ul>
+  </div>
+  <div class="video-container">
+    <iframe id="videoPlayer" src="https://short.icu/ffpzDoTEG" allowfullscreen></iframe>
+  </div>
+</div>
+
+<script>
+  const videos = [
+    { title: "01. Welcome.mp4", url: "https://short.icu/ffpzDoTEG" },
+    { title: "02. Who is Jo.mp4", url: "https://short.icu/TkPaogZO7" },
+    { title: "03. Why Webflow.mp4", url: "https://short.icu/TsZwFNlNz" },
+    { title: "04. Course Overview", url: "https://short.icu/t9lBDMxfN" },
+    { title: "05. Brief", url: "https://short.icu/jNGv9bRNb" },
+    { title: "06. Project Setup.mp4", url: "https://short.icu/x4ny9h5JA" },
+    { title: "07. Home Page.mp4", url: "https://short.icu/PUetODyrE" },
+    { title: "08. Interactions.mp4", url: "https://short.icu/YLoxAAGny" },
+    { title: "09. Menu.mp4", url: "https://short.icu/r2WgtyJqk" },
+    { title: "10. Loader.mp4", url: "https://short.icu/3TsUzxkBi" },
+    { title: "11. Dark Mode Switch.mp4", url: "https://short.icu/8AeUFr9vY" },
+    { title: "12. About Page.mp4", url: "https://short.icu/5To01F735" },
+    { title: "13. Work Page.mp4", url: "https://short.icu/F8XkJVhwb" },
+    { title: "14. Project Page.mp4", url: "https://short.icu/QrwmJc09S" },
+    { title: "15. Contact Page.mp4", url: "https://short.icu/4S4v5CHhW" },
+    { title: "16. Pre-launch checklist", url: "https://short.icu/d9TlXG7W9" },
+    { title: "17. Parting Words.mp4", url: "https://short.icu/hm2SBykdP" }
+  ];
+
+  const videoList = document.getElementById('videoList');
+  const videoPlayer = document.getElementById('videoPlayer');
+
+  videos.forEach((video, index) => {
+    const li = document.createElement('li');
+    li.textContent = video.title;
+    if (index === 0) li.classList.add('active');
+
+    li.addEventListener('click', () => {
+      document.querySelectorAll('#videoList li').forEach(item => item.classList.remove('active'));
+      li.classList.add('active');
+      videoPlayer.src = video.url;
+    });
+
+    videoList.appendChild(li);
+  });
+</script>
+
+</body>
+</html>
