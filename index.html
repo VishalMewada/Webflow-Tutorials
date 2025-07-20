@@ -1,148 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Video Playlist</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      background-color: #f4f4f4;
-    }
-
-    header {
-      background: #222;
-      color: #fff;
-      padding: 1rem;
-      text-align: center;
-      font-size: 1.5em;
-    }
-
-    .container {
-      display: flex;
-      flex-direction: row;
-      padding: 1rem;
-      gap: 1rem;
-    }
-
-    .playlist {
-      width: 300px;
-      max-height: 80vh;
-      overflow-y: auto;
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-
-    .playlist h2 {
-      text-align: center;
-      margin: 0;
-      padding: 1rem;
-      background: #eee;
-      font-size: 1.2em;
-    }
-
-    .playlist ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .playlist li {
-      padding: 0.8rem 1rem;
-      border-bottom: 1px solid #eee;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .playlist li:hover {
-      background-color: #f0f0f0;
-    }
-
-    .playlist li.active {
-      background-color: #ddd;
-      font-weight: bold;
-    }
-
-    .video-container {
-      flex: 1;
-    }
-
-    iframe {
-      width: 100%;
-      height: 480px;
-      border: none;
-      border-radius: 5px;
-    }
-
-    @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-      }
-
-      .playlist {
-        width: 100%;
-        max-height: 300px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Course Playlist</title>
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom scrollbar for a cleaner look in Webkit browsers */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1f2937; /* gray-800 */
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #4b5563; /* gray-600 */
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #6b7280; /* gray-500 */
+        }
+        /* Applying the Inter font family */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-gray-900 text-white antialiased">
 
-<header>Video Course Playlist</header>
+    <!-- Main Container -->
+    <div class="flex flex-col lg:flex-row min-h-screen">
 
-<div class="container">
-  <div class="playlist">
-    <h2>Playlist</h2>
-    <ul id="videoList">
-      <!-- Playlist items will be injected here -->
-    </ul>
-  </div>
-  <div class="video-container">
-    <iframe id="videoPlayer" src="https://short.icu/ffpzDoTEG" allowfullscreen></iframe>
-  </div>
-</div>
+        <!-- Video Player Section -->
+        <main class="w-full lg:w-3/4 p-4 md:p-6 lg:p-8">
+            <header class="mb-6">
+                <h1 class="text-3xl md:text-4xl font-bold text-white">Webflow Course</h1>
+                <p class="text-gray-400 mt-1">From beginner to pro in just a few hours.</p>
+            </header>
+            
+            <!-- Video Player Container -->
+            <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-2xl bg-black">
+                <iframe 
+                    id="videoPlayer" 
+                    src="https://short.icu/ffpzDoTEG" 
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen
+                    class="w-full h-full border-0">
+                </iframe>
+            </div>
 
-<script>
-  const videos = [
-    { title: "01. Welcome.mp4", url: "https://short.icu/ffpzDoTEG" },
-    { title: "02. Who is Jo.mp4", url: "https://short.icu/TkPaogZO7" },
-    { title: "03. Why Webflow.mp4", url: "https://short.icu/TsZwFNlNz" },
-    { title: "04. Course Overview", url: "https://short.icu/t9lBDMxfN" },
-    { title: "05. Brief", url: "https://short.icu/jNGv9bRNb" },
-    { title: "06. Project Setup.mp4", url: "https://short.icu/x4ny9h5JA" },
-    { title: "07. Home Page.mp4", url: "https://short.icu/PUetODyrE" },
-    { title: "08. Interactions.mp4", url: "https://short.icu/YLoxAAGny" },
-    { title: "09. Menu.mp4", url: "https://short.icu/r2WgtyJqk" },
-    { title: "10. Loader.mp4", url: "https://short.icu/3TsUzxkBi" },
-    { title: "11. Dark Mode Switch.mp4", url: "https://short.icu/8AeUFr9vY" },
-    { title: "12. About Page.mp4", url: "https://short.icu/5To01F735" },
-    { title: "13. Work Page.mp4", url: "https://short.icu/F8XkJVhwb" },
-    { title: "14. Project Page.mp4", url: "https://short.icu/QrwmJc09S" },
-    { title: "15. Contact Page.mp4", url: "https://short.icu/4S4v5CHhW" },
-    { title: "16. Pre-launch checklist", url: "https://short.icu/d9TlXG7W9" },
-    { title: "17. Parting Words.mp4", url: "https://short.icu/hm2SBykdP" }
-  ];
+            <!-- Current Video Title -->
+            <div class="mt-6">
+                <h2 id="currentVideoTitle" class="text-2xl font-semibold text-white">01. Welcome.mp4</h2>
+                <p class="text-gray-500">Now Playing</p>
+            </div>
+        </main>
 
-  const videoList = document.getElementById('videoList');
-  const videoPlayer = document.getElementById('videoPlayer');
+        <!-- Playlist Section -->
+        <aside class="w-full lg:w-1/4 bg-gray-900/80 backdrop-blur-sm border-l border-gray-700/50">
+            <div class="p-6 h-full flex flex-col">
+                <h3 class="text-2xl font-bold mb-4">Course Playlist</h3>
+                <div id="videoList" class="custom-scrollbar flex-1 overflow-y-auto -mr-4 pr-4 space-y-2">
+                    <!-- Playlist items will be dynamically injected here by JavaScript -->
+                </div>
+            </div>
+        </aside>
 
-  videos.forEach((video, index) => {
-    const li = document.createElement('li');
-    li.textContent = video.title;
-    if (index === 0) li.classList.add('active');
+    </div>
 
-    li.addEventListener('click', () => {
-      document.querySelectorAll('#videoList li').forEach(item => item.classList.remove('active'));
-      li.classList.add('active');
-      videoPlayer.src = video.url;
-    });
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- DATA ---
+            const videos = [
+                { title: "01. Welcome.mp4", url: "https://short.icu/ffpzDoTEG" },
+                { title: "02. Who is Jo.mp4", url: "https://short.icu/TkPaogZO7" },
+                { title: "03. Why Webflow.mp4", url: "https://short.icu/TsZwFNlNz" },
+                { title: "04. Course Overview", url: "https://short.icu/t9lBDMxfN" },
+                { title: "05. Brief", url: "https://short.icu/jNGv9bRNb" },
+                { title: "06. Project Setup.mp4", url: "https://short.icu/x4ny9h5JA" },
+                { title: "07. Home Page.mp4", url: "https://short.icu/PUetODyrE" },
+                { title: "08. Interactions.mp4", url: "https://short.icu/YLoxAAGny" },
+                { title: "09. Menu.mp4", url: "https://short.icu/r2WgtyJqk" },
+                { title: "10. Loader.mp4", url: "https://short.icu/3TsUzxkBi" },
+                { title: "11. Dark Mode Switch.mp4", url: "https://short.icu/8AeUFr9vY" },
+                { title: "12. About Page.mp4", url: "https://short.icu/5To01F735" },
+                { title: "13. Work Page.mp4", url: "https://short.icu/F8XkJVhwb" },
+                { title: "14. Project Page.mp4", url: "https://short.icu/QrwmJc09S" },
+                { title: "15. Contact Page.mp4", url: "https://short.icu/4S4v5CHhW" },
+                { title: "16. Pre-launch checklist", url: "https://short.icu/d9TlXG7W9" },
+                { title: "17. Parting Words.mp4", url: "https://short.icu/hm2SBykdP" }
+            ];
 
-    videoList.appendChild(li);
-  });
-</script>
+            // --- DOM ELEMENTS ---
+            const videoListContainer = document.getElementById('videoList');
+            const videoPlayer = document.getElementById('videoPlayer');
+            const currentVideoTitle = document.getElementById('currentVideoTitle');
+            let currentActiveItem = null;
+
+            // --- FUNCTIONS ---
+
+            /**
+             * Handles playing a video based on its index in the array.
+             * @param {number} index - The index of the video to play.
+             */
+            function playVideo(index) {
+                // Get the video object
+                const video = videos[index];
+                if (!video) return;
+
+                // Update the video player source
+                videoPlayer.src = video.url;
+
+                // Update the main title display
+                currentVideoTitle.textContent = video.title;
+
+                // Update the active state in the playlist
+                const newActiveItem = document.querySelector(`[data-index='${index}']`);
+                if (currentActiveItem) {
+                    currentActiveItem.classList.remove('bg-indigo-600', 'text-white');
+                    currentActiveItem.classList.add('hover:bg-gray-700');
+                }
+                if (newActiveItem) {
+                    newActiveItem.classList.add('bg-indigo-600', 'text-white');
+                    newActiveItem.classList.remove('hover:bg-gray-700');
+                    currentActiveItem = newActiveItem;
+                }
+            }
+
+            /**
+             * Renders the entire video playlist.
+             */
+            function renderPlaylist() {
+                videoListContainer.innerHTML = ''; // Clear existing list
+                videos.forEach((video, index) => {
+                    const listItem = document.createElement('div');
+                    listItem.className = 'flex items-center p-3 rounded-lg cursor-pointer transition-colors duration-200 hover:bg-gray-700';
+                    listItem.dataset.index = index;
+
+                    // Play icon
+                    const iconHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>`;
+                    
+                    // Video title
+                    const titleHTML = `<span class="font-medium text-sm">${video.title}</span>`;
+
+                    listItem.innerHTML = iconHTML + titleHTML;
+
+                    // Add click event listener to play the video
+                    listItem.addEventListener('click', () => {
+                        playVideo(index);
+                    });
+
+                    videoListContainer.appendChild(listItem);
+                });
+            }
+
+            // --- INITIALIZATION ---
+            renderPlaylist(); // Build the playlist on page load
+            playVideo(0);      // Play the first video by default
+        });
+    </script>
 
 </body>
 </html>
